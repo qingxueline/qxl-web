@@ -1,0 +1,41 @@
+image: java:8
+
+stages:
+  - build
+  - deploy-dev
+
+# 项目构建
+build-job:
+  stage: build
+  only:
+    - develop-dev
+    - master
+  script:
+    - ./mvnw clean package
+  artifacts:
+    paths:
+      - target/qxl-web.jar
+  tags:
+    - 109-runnertest-builder
+
+# 发布测试环境
+dev:
+  stage: deploy-dev
+  only:
+    - develop
+  script:
+    - curl --location "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar zx
+    - ./cf login -u $CF_USERNAME -p $CF_PASSWORD -a api.run.pivotal.io
+    - ./cf push
+
+
+# 发布生产
+pro:
+  stage: deploy-dev
+  only:
+    - develop
+  script:
+    - curl --location "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar zx
+    - ./cf login -u $CF_USERNAME -p $CF_PASSWORD -a api.run.pivotal.io
+    - ./cf push
+

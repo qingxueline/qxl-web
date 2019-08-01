@@ -1,0 +1,7 @@
+version: '2.1'
+services:
+  ace-center:
+    image: qxl/qxl-web
+    container_name: qxl-web
+    ports:
+      - "8099:8099"
