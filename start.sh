@@ -7,8 +7,11 @@ JAR_FILE=~/.jenkins/workspace/qxl-web/target/${JAR_NAME}
 execute_target=~/qxl-web/
 
 #ps -ef | grep qxl-web.jar | grep -v grep |awk '{print $2}' | xargs kill -9
-ee=$(ps -ef | grep qxl-web.jar | grep -v grep |awk '{print $2}')
-echo $ee
+pid=$(ps -ef | grep qxl-web.jar | grep -v grep | awk '{print $2}')
+if [ -n "${pid}" ]; then
+  echo "kill -9 pid:"$pid
+  kill -9 $pid
+fi
 if [ ! -f ${JAR_FILE} ]; then
   echo "qxl-web.jar not exist!"
   exit
