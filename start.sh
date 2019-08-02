@@ -1,5 +1,8 @@
 #!/bin/bash
+OLD_BUILD_ID=$BUILD_ID
+echo $OLD_BUILD_I
 JAR_NAME='qxl-web.jar'
+
 cd ~/.jenkins/workspace/qxl-web/target || exit
 pwd
 
