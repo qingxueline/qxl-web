@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     @RequestMapping("/say")
     public String say() {
-        return "Say Hello_enenenen";
+        return "Say Hello";
     }
 }
