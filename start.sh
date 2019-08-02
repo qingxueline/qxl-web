@@ -8,7 +8,7 @@ if [ ! -f ${JAR_FILE} ]; then
   exit
 else
   if [ ! -d ${execute_target} ]; then
-    echo "create directory"
+    echo "create directory:"${execute_target}
     mkdir -p ${execute_target}
   fi
   cp ${JAR_FILE} ~/qxl-web/${JAR_NAME}
