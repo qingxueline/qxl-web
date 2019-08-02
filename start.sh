@@ -8,7 +8,7 @@ execute_target=~/qxl-web/
 
 # 判断是否已有启动的程序
 pid='ps -ef | grep '${JAR_NAME}' |  grep -v grep | awk '{print $2}''
-
+echo $pid
 if [ -n $pid ]
 then
    kill -9 $pid
