@@ -6,8 +6,9 @@ JAR_NAME="qxl-web.jar"
 JAR_FILE=~/.jenkins/workspace/qxl-web/target/${JAR_NAME}
 execute_target=~/qxl-web/
 
-ps -ef | grep qxl-web.jar | cut -c 9-15 | xargs kill -9
-
+#ps -ef | grep qxl-web.jar | grep -v grep |awk '{print $2}' | xargs kill -9
+ee=$(ps -ef | grep qxl-web.jar | grep -v grep |awk '{print $2}')
+echo $ee
 if [ ! -f ${JAR_FILE} ]; then
   echo "qxl-web.jar not exist!"
   exit
@@ -23,9 +24,3 @@ cd ~/qxl-web/ || exit
 echo "Go to the execution directory >> $(pwd)"
 echo "Startup SpringBoot Application"
 nohup java -jar ${JAR_NAME} >consoleMsg.log 2>&1 &
-
-#pid='ps -ef | grep '${JAR_NAME}' |  grep -v grep | awk '{print $2}''
-#echo $pid
-#if [ -n $pid ]; then
-#    kill -9 $pid
-#fi
